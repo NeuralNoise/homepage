@@ -108,7 +108,7 @@ class autoload
     public function loadClass($class)
     {
         // the current namespace prefix
-        $prefix = $class;
+        $prefix = '\\' . ltrim($class, '\\');
 
         // work backwards through the namespace names of the fully-qualified
         // class name to find a mapped file name
@@ -129,6 +129,12 @@ class autoload
             // remove the trailing namespace separator for the next iteration
             // of strrpos()
             $prefix = rtrim($prefix, '\\');   
+        }
+        
+        // try to load directly from a mapped directory
+        $mapped_file = $this->loadMappedFile('\\', $class);
+        if ($mapped_file) {
+        	return $mapped_file;
         }
 
         // never found a mapped file
