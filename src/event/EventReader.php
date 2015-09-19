@@ -1,6 +1,8 @@
 <?php
 namespace egl\website\event;
 
-interface EventReader {
+abstract class EventReader implements \egl\website\Reader {
+	public abstract function setIdFilter($id);
+	public abstract function search($search, $field = '');
 	
 }
