@@ -4,10 +4,12 @@ namespace egl\website\event;
 
 class EventBuilder implements \egl\website\Builder {
 	
-	protected $name;
-	protected $description;
-	protected $startDateTime;
-	protected $endDateTime;
+	public $name;
+	public $description;
+	public $startDateTime;
+	public $endDateTime;
+
+	public function __construct() {}
 
 	/**
 	 * The name of the event.
@@ -38,4 +40,5 @@ class EventBuilder implements \egl\website\Builder {
 	public function build() {
 		return new Event($this);
 	}
+
 }
